@@ -1,0 +1,128 @@
+<style>
+
+  ion-content{
+  background-image: url('img/back.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  }
+
+  .spacer{
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+  .logo{
+    height: auto;
+      width: 60%;
+      margin: auto;
+      display: block;
+  }
+
+  .icon{
+    color: #46caa7;
+  }
+
+  .side-padding{
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .vertical-padding{
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  .padding-top{
+    padding-top:15px;
+  }
+
+  .center {
+      margin: auto;
+      width: 50%;
+      padding: 10px;
+      text-align: center;
+  }
+
+  .button-primary{
+    background-color: #46caa7;
+    color: white;
+  }
+
+
+  .headtext{
+    font-size: 15px;
+  }
+
+  .left{
+    float:left;
+  }
+
+  .right{
+    float:right;
+  }
+
+  .text-light{
+    color: white;
+  }
+
+  .text-dark{
+    color:#1e1e1e;
+  }
+
+  .transparent{
+    background-color: transparent !important;
+  }
+
+
+  ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+      color:#f1f1f1;
+  }
+
+  [noScroll] {
+  overflow: hidden;
+}
+
+</style>
+
+
+<ion-content padding [attr.noScroll]="shouldScroll">
+  <img src="img/push.png" class="logo">
+
+  <form [formGroup]="loginForm" (submit)="loginUser()" novalidate>
+
+    <ion-item>
+      <ion-label stacked>Email</ion-label>
+      <ion-input formControlName="email" type="email" placeholder="Your email address"
+        [class.invalid]="!loginForm.controls.email.valid && loginForm.controls.email.dirty"></ion-input>
+    </ion-item>
+
+    <ion-item class="error-message"
+      *ngIf="!loginForm.controls.email.valid  && loginForm.controls.email.dirty">
+      <p>Please enter a valid email.</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Password</ion-label>
+      <ion-input formControlName="password" type="password" placeholder="Your password"
+        [class.invalid]="!loginForm.controls.password.valid && loginForm.controls.password.dirty"></ion-input>
+    </ion-item>
+    <ion-item class="error-message"
+      *ngIf="!loginForm.controls.password.valid  && loginForm.controls.password.dirty">
+      <p>Your password needs more than 6 characters.</p>
+    </ion-item>
+
+    <button ion-button block outline class="button" color="light" type="submit" [disabled]="!loginForm.valid">
+      Login
+    </button>
+
+  </form>
+
+    <button ion-button block clear color="light" (click)="goToSignup()">
+      Create a new account
+    </button>
+
+    <button ion-button block clear color="light" (click)="goToResetPassword()">
+      I forgot my password
+    </button>
+
+</ion-content>
